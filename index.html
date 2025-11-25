@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cracko Studio</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+</head>
+
+<body>
+
+    <header>
+        <div class="left">
+            <img src="logo.jpg" alt="">
+        </div>
+        <div class="right">
+            <button>INICIO</button>
+            <button>ACERCA DE</button>
+            <a href="tienda.html">
+                <button class="botontienda"> <img id="cart" src="shopping-cart.png" style="width:0px;"
+                        alt="">TIENDA</button>
+            </a>
+            <button class="contacto"><img id="telefono" width="0px"
+                    src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png" alt="">CONTACTO</button>
+        </div>
+    </header>
+    <main>
+        <img src="Twitch.jpg"
+            style="position: absolute;z-index: 1;width: 170px;border-radius: 10px;transform:rotate(20deg);top: 120px;"
+            alt="">
+
+        <div class="cta">
+            <div class="black">
+                <p>Haz que tu stream se vea PRO hoy</p>
+                <button>Mejorar mi contenido</button>
+            </div>
+        </div>
+
+        <div class="buscador">
+            <input type="text" placeholder="Pon aqui lo que busques">
+        </div>
+        <div class="proyectos">
+            <div class="proyecto">
+                <img src="Proyecto nuevo (6).png" alt="">
+                <h3>Overlay de cámara</h3>
+                <p>Hicimos un overlay para los directos de SoySorneth, streamer de twitch, nos pidió hacerle un overlay
+                    que encajase con su canal, nos dijo que necesitaba un overlay para la cámara que tuviese como palos
+                    de nido de cuervo ya que su personaje principal de su canal es un cuervo.</p>
+
+                <p>Streamer: <a style="color: black; text-decoration: none;" href="https://www.twitch.tv/soysorneth">
+                        SoySorneth</a></p>
+            </div>
+
+            <div class="proyecto">
+                <img src="#" alt="">
+                <h3>Nombre</h3>
+                <p>Descripción</p>
+            </div>
+            <div class="proyecto">
+                <img src="#" alt="">
+                <h3>Nombre</h3>
+                <p>Descripción</p>
+            </div>
+
+            <div class="proyecto">
+                <img src="#" alt="">
+                <h3>Nombre</h3>
+                <p>Descripción</p>
+            </div>
+
+            <div class="proyecto">
+                <img src="#" alt="">
+                <h3>Nombre</h3>
+                <p>Descripción</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+<script>
+    const carrito = document.getElementById("cart");
+    const botontienda = document.querySelector(".botontienda");
+    const proyectos = document.querySelector(".proyectos");
+    const telefono = document.getElementById("telefono");
+    const contacto = document.querySelector(".contacto");
+
+    botontienda.addEventListener("mouseenter", function () {
+        carrito.style.width = "10px";
+        carrito.style.marginRight = "5px";
+    });
+
+    botontienda.addEventListener("mouseleave", function () {
+        carrito.style.width = "0px";
+    });
+
+    contacto.addEventListener("mouseenter", function () {
+        telefono.style.width = "10px";
+        telefono.style.marginRight = "10px";
+    });
+
+    contacto.addEventListener("mouseleave", function () {
+        telefono.style.width = "0px";
+    });
+
+    // ---- BUSCADOR ----
+    const input = document.querySelector(".buscador input");
+    const listaProyectos = document.querySelectorAll(".proyecto");
+
+    // Crear mensaje de "Sin resultados"
+    const msgSinResultados = document.createElement("p");
+    msgSinResultados.textContent = "No hay proyectos con tu búsqueda";
+    msgSinResultados.style.color = "red";
+    msgSinResultados.style.width = "100%";
+    msgSinResultados.style.textAlign = "center";
+    msgSinResultados.style.fontFamily = "sans-serif";
+    msgSinResultados.style.display = "none"; 
+    proyectos.appendChild(msgSinResultados);
+
+    input.addEventListener("input", function () {
+        const texto = input.value.toLowerCase().trim();
+        let coincidencias = 0;
+
+        listaProyectos.forEach(proyecto => {
+            const contenido = proyecto.innerText.toLowerCase();
+
+            if (contenido.includes(texto)) {
+                proyecto.style.display = "block";
+                coincidencias++;
+            } else {
+                proyecto.style.display = "none";
+            }
+        });
+
+        // Mostrar o esconder el mensaje
+        if (coincidencias === 0) {
+            msgSinResultados.style.display = "block";
+        } else {
+            msgSinResultados.style.display = "none";
+        }
+    });
+</script>
+
+
+
+</html>

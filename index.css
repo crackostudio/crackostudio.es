@@ -1,0 +1,146 @@
+body {
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+}
+
+header .left {
+        float: left;
+}
+
+header .right {
+        align-content: center;
+        height: 70px;
+        margin-left: 90px;
+}
+
+header .right button {
+        background-color: transparent;
+        border: transparent;
+        color: white;
+        font-family: sans-serif;
+        width: max-content;
+        /* ← ya tiene el mismo width que en hover */
+        padding: 10px;
+        /* ← mismo padding que en hover */
+        transition: 0.5s;
+}
+
+header .right button:hover {
+        cursor: pointer;
+        background-color: red;
+        border-radius: 5px;
+}
+
+header .left img {
+        width: 70px;
+}
+
+header {
+        background-color: black;
+}
+
+.contacto {
+        position: absolute;
+        right: 30px;
+}
+
+main .cta {
+        background-image: url(🔥\ Next-Level\ Editing_\ Creative\ Timeline\ Ideas\ You\ Need\ to\ Try!.jpg);
+        height: 260px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 10px;
+        margin-top: 0px;
+}
+
+.cta .black {
+        background-color: rgba(0, 0, 0, 0.705);
+        height: 280px;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+}
+
+.cta .black p {
+        color: white;
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        font-family: sans-serif;
+        margin-top: 50px;
+}
+
+.cta .black button {
+        background-color: transparent;
+        border-radius: 5px;
+        color: red;
+        border: 2px solid red;
+        font-family: sans-serif;
+        width: max-content;
+        padding: 10px;
+        margin-left: 45%;
+        transition: 0.5s;
+        animation: identifier 1s ease-in-out infinite;
+}
+
+.cta .black button:hover {
+        cursor: pointer;
+        background-color: red;
+        border-radius: 5px;
+        color: white;
+}
+
+
+@keyframes identifier {
+        0% {
+                box-shadow: 0px 0px 0px 0px red;
+        }
+
+        100% {
+                box-shadow: 0px 0px 10px 10px red;
+        }
+}
+
+.proyectos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 30px;
+        margin-left: 20px;
+}
+
+.proyecto {
+        background: red;
+        padding: 30px;
+        font-family: sans-serif;
+        text-align: center;
+        color: black;
+        border-radius: 10px;
+
+        /* 🔥 Esto hace que todas midan igual */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: max-content;
+        /* Ajusta a tu gusto */
+}
+
+
+.buscador {
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+}
+
+.buscador input {
+        background: #00000021;
+        border: transparent;
+        padding: 10px;
+        border-radius: 5px;
+        width: 400px;
+        margin-top: 20px;
+}

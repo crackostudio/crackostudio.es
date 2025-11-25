@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+    <header>
+      <div class="left">
+        <img src="Group 3.jpg" alt="">
+      </div>
+    </header>
+    <div id="paypal-button-container"></div>
+
+    <!-- 1️⃣ PRIMERO carga el SDK de PayPal -->
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=AVzmhzfhB2uySyPXgW2tPuBumWrShNu-Q-472sza3tNN4nGJkFVadpE88RZiAbArK9P6qc8LJkIdg-YI&currency=EUR"></script>
+
+    <!-- 2️⃣ LUEGO tu script que usa paypal.Buttons() -->
+    <script>
+      paypal.Buttons({
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '32.00' // Precio
+              }
+            }]
+          });
+        },
+
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            alert("Pago completado por " + details.payer.name.given_name);
+            console.log(details);
+          });
+        }
+      }).render('#paypal-button-container');
+    </script>
+
+
+</body>
+
+</html>
