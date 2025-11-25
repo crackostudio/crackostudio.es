@@ -170,3 +170,33 @@ main .cta {
         border: transparent;
         cursor: pointer;
 }
+
+html {
+        width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+        header {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+        }
+
+        header .right {
+                display: inline;
+                flex-direction: column;
+                align-items: center;
+                margin-left: 0;
+                gap: 10px;
+                margin-top: 0px;
+        }
+
+        .producto {
+                margin-top: 20px;
+        }
+
+        .contacto {
+                position: static;
+                margin-top: 10px;
+        }
+}
