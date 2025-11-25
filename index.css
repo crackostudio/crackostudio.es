@@ -144,3 +144,29 @@ main .cta {
         width: 400px;
         margin-top: 20px;
 }
+
+
+.productos {
+        width: 96%;
+        height: 610px;
+        padding: 30px;
+}
+
+.producto {
+        width: 210px;
+        padding: 30px;
+        background: #80808038;
+        border-radius: 10px;
+        display: inline-block;
+        margin-left: 20px;
+        height: max-content;
+}
+
+.producto button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: transparent;
+        cursor: pointer;
+}
