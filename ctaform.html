@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <form action="https://formsubmit.co/crackostudioagency@gmail.com" method="POST" style="
+        position: absolute;
+        left: 610px;
+        top: 310px;
+        width: 386px;
+        line-height: 30px;
+        background: red;
+        padding: 30px;
+        border-radius: 10px;
+        color: white;
+        font-family: sans-serif;
+        height: auto;
+    ">
+        <input type="text" name="Nombre" placeholder="Nombre" required>
+        <input type="email" name="Email" placeholder="Email" required>
+
+        <label>Selecciona qué tipo de overlay quieres</label>
+        <div class="opciones" style="margin-top: 0px; display: flex;">
+
+            <!-- Overlay -->
+            <select id="selectOverlay"
+                style="background-color: rgba(0, 0, 0, 0.268); color: white; padding: 10px; width: max-content; border-radius: 5px; margin-right: 10px;"
+                name="Tipo_de_overlay">
+                <option value="Nada">Nada</option>
+                <option value="Overlay cámara básico">Overlay cámara básica</option>
+            </select>
+
+            <!-- Transiciones -->
+            <select
+                style="background-color: rgba(0, 0, 0, 0.268); color: white; padding: 10px; width: max-content; border-radius: 5px;"
+                name="Tipo_de_transicion" id="selectTransicion">
+                <option value="Nada">Nada</option>
+                <option value="Personalizado">Transición personalizada</option>
+            </select>
+        </div>
+
+        <!-- Textarea -->
+        <textarea name="Descripcion_personalizada" id="textareaTransicion"
+            placeholder="Describe cómo quieres tu overlay o transición personalizada"
+            style="display:none; width: 100%; margin-top: 10px; padding: 10px; border-radius: 5px;">
+        </textarea>
+
+        <!-- Opciones ocultas formsubmit -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="Nuevo pedido de overlay">
+
+        <button id="btnEnviar" type="submit" onclick="alert('Gracias por tu pedido');" style="
+                margin-top: 10px; 
+                padding: 10px; 
+                background: black; 
+                color: white; 
+                border: none; 
+                border-radius: 5px;
+                opacity: 0.5;
+                cursor: not-allowed;
+            " disabled>Enviar</button>
+    </form>
+
+    <script>
+        const selectOverlay = document.getElementById("selectOverlay");
+        const selectTransicion = document.getElementById("selectTransicion");
+        const textareaTransicion = document.getElementById("textareaTransicion");
+        const btnEnviar = document.getElementById("btnEnviar");
+
+        function updateUI() {
+            // Mostrar/ocultar textarea
+            if (
+                selectOverlay.value !== "Nada" ||
+                selectTransicion.value === "Personalizado"
+            ) {
+                textareaTransicion.style.display = "block";
+            } else {
+                textareaTransicion.style.display = "none";
+            }
+
+            // Activar/desactivar botón
+            if (
+                selectOverlay.value !== "Nada" ||
+                selectTransicion.value !== "Nada"
+            ) {
+                btnEnviar.disabled = false;
+                btnEnviar.style.opacity = "1";
+                btnEnviar.style.cursor = "pointer";
+            } else {
+                btnEnviar.disabled = true;
+                btnEnviar.style.opacity = "0.5";
+                btnEnviar.style.cursor = "not-allowed";
+            }
+        }
+
+        selectOverlay.addEventListener("change", updateUI);
+        selectTransicion.addEventListener("change", updateUI);
+    </script>
+</body>
+
+</html>
