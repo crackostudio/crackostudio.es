@@ -93,6 +93,16 @@
         <p class="precio">9,99€</p>
         <button>Comprar</button>
       </div>
+
+
+        <div id="sornethproducto" class="producto" style="text-align: center; display: none;">
+        <img src="Purple Twitch Overlay Banner.png" width="200px" alt="">
+        <h3 style="font-family: sans-serif;">Overlay Sorneth</h3>
+        <p class="descripcion">Overlay personalizado para Sorneth!</p>
+        <p class="precio" style="font-size: 30px; font-weight: bold; color: red;">4,99€</p>
+        <p class="precio" style="text-decoration: line-through; color: black; display: block;">19,99€</p>
+        <button>Comprar</button>
+      </div>
     </div>
   </main>
 
@@ -121,6 +131,23 @@
   </script>
 
   <script>
+const productossorneth = document.getElementById("sornethproducto");
+
+let nombre = prompt("Como te llamas?");
+productossorneth.style.display = "none";
+
+    let confirmar;
+
+if (nombre == "Sorneth" || nombre == "soysorneth") {
+    alert("Bienvenido Sorneth!");
+    confirmar = confirm("Quieres ver tus productos para ti?");
+    if (confirmar == true) {
+        productossorneth.style.display = "inline-block";
+    }
+} else {
+  productossorneth.style.display = "none";
+}
+
     const carrito = document.getElementById("cart");
     const botontienda = document.querySelector(".botontienda");
     const telefono = document.getElementById("telefono");
