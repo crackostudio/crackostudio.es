@@ -60,6 +60,11 @@
           <img id="cart" src="shopping-cart.png" style="width:0px;" alt="">TIENDA
         </button>
       </a>
+
+      <a onclick="solicitarNombre()" class="iniciarsesion" style="float: right; margin-right: 150px;">
+        <button class="iniciosesion" style="color: white;"><img style="width: 14px; margin-right: 9px;" src="usuario.png" alt="">Iniciar Sesión</button>
+      </a>
+
       <a href="contacto.html">
         <button class="contacto"><img id="telefono" width="0px"
             src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png" alt="">CONTACTO</button>
@@ -95,6 +100,15 @@
       </div>
 
 
+      <div class="producto" style="text-align: center;">
+        <img src="repo overlay camera.png" width="200px" alt="">
+        <h3 style="font-family: sans-serif;">REPO overlay cámara</h3>
+        <p class="descripcion">Overlay personalizado para REPO!</p>
+        <p class="precio">15,99€</p>
+        <button>Comprar</button>
+      </div>
+
+
         <div id="sornethproducto" class="producto" style="text-align: center; display: none;">
         <img src="Purple Twitch Overlay Banner.png" width="200px" alt="">
         <h3 style="font-family: sans-serif;">Overlay Sorneth</h3>
@@ -118,6 +132,28 @@
     </div>
   </div>
 
+  <script>
+const archivosProductos = {
+  "Overlay hollow Knight": "descargas/hollow-knight-overlay.zip",
+  "Skyrim overlay cuenta atrás": "descargas/skyrim-overlay.zip",
+  "Navidad Overlay Cámara": "descargas/navidad-overlay.zip",
+  "REPO overlay cámara": "descargas/repo-overlay.zip",
+  "Overlay Sorneth": "descargas/Purple-Twitch-Overlay-Banner.png"
+};
+</script>
+
+<script>
+function descargarArchivo(ruta) {
+  const a = document.createElement("a");
+  a.href = ruta;
+  a.download = "";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+
+
   <!-- SDK PayPal -->
   <script
     src="https://www.paypal.com/sdk/js?client-id=AVzmhzfhB2uySyPXgW2tPuBumWrShNu-Q-472sza3tNN4nGJkFVadpE88RZiAbArK9P6qc8LJkIdg-YI&currency=EUR"></script>
@@ -133,20 +169,25 @@
   <script>
 const productossorneth = document.getElementById("sornethproducto");
 
-let nombre = prompt("Como te llamas?");
-productossorneth.style.display = "none";
-
-    let confirmar;
-
-if (nombre == "Sorneth" || nombre == "soysorneth") {
+function solicitarNombre() {
+  let nombre = prompt("Como te llamas?");
+  productossorneth.style.display = "none";
+  let confirmar;
+  if (nombre == "Sorneth" || nombre == "soysorneth") {
     alert("Bienvenido Sorneth!");
     confirmar = confirm("Quieres ver tus productos para ti?");
     if (confirmar == true) {
-        productossorneth.style.display = "inline-block";
+      productossorneth.style.display = "inline-block";
     }
-} else {
-  productossorneth.style.display = "none";
+  } else {
+    productossorneth.style.display = "none";
+  }
+
+  const nombreUsuario = document.querySelector(".iniciarsesion button");
+  nombreUsuario.innerHTML = `<img style="width: 14px; margin-right: 5px;" src="usuario.png" alt="">${nombre}`;
 }
+
+
 
     const carrito = document.getElementById("cart");
     const botontienda = document.querySelector(".botontienda");
@@ -207,29 +248,52 @@ if (nombre == "Sorneth" || nombre == "soysorneth") {
             });
           },
           onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-              alert("Pago completado por " + details.payer.name.given_name + "\nGracias por tu compra!");
-              modal.style.display = "none";
+  return actions.order.capture().then(function (details) {
 
-              // Enviar info al admin usando EmailJS
-              emailjs.send(
-                "service_3g5jsj8", // tu Service ID
-                "template_oj90d3a", // tu Template ID
-                {
-                  producto: nombre,
-                  descripcion: descripcion,
-                  precio: precioText,
-                  comprador: details.payer.name.given_name + " " + details.payer.name.surname,
-                  email: details.payer.email_address
-                },
-                "xOgcR2POR2f6tPXTk" // tu User ID
-              ).then(() => {
-                console.log("Pedido enviado al admin correctamente.");
-              }).catch((err) => {
-                console.error("Error al enviar pedido:", err);
-              });
-            });
-          }
+    alert(
+      "Pago completado por " +
+      details.payer.name.given_name +
+      "\nGracias por tu compra!"
+    );
+
+    modal.style.display = "none";
+
+    // 🔽 DESCARGA SEGURA DEL PRODUCTO
+    const nombreProducto = nombre.trim();
+    const archivo = archivosProductos[nombreProducto];
+
+    if (archivo) {
+      descargarArchivo(archivo);
+    } else {
+      alert("Error: archivo no encontrado para " + nombreProducto);
+      console.error("Producto no mapeado:", nombreProducto);
+    }
+
+    // 📧 EMAIL AL ADMIN
+    emailjs.send(
+      "service_3g5jsj8",
+      "template_oj90d3a",
+      {
+        producto: nombreProducto,
+        descripcion: descripcion,
+        precio: precioText,
+        comprador:
+          details.payer.name.given_name +
+          " " +
+          details.payer.name.surname,
+        email: details.payer.email_address
+      },
+      "xOgcR2POR2f6tPXTk" 
+    ).then(() => {
+      console.log("Pedido enviado correctamente.");
+    }).catch((err) => {
+      console.error("Error al enviar pedido:", err);
+    });
+
+  });
+}
+
+
         }).render('#paypal-button-container');
       });
     });
