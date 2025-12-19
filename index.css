@@ -307,3 +307,16 @@ footer {
         font-size: 20px;
         font-family: sans-serif;
 }
+
+@keyframes infinite {
+        from {
+                left: -1600px;
+        }
+        to {
+                left: 100%;
+        }
+}
+
+.ctanavidad{
+        animation: infinite 10s linear infinite;
+}
