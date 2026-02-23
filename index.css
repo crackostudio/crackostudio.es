@@ -2,6 +2,7 @@ body {
         height: 100%;
         margin: 0;
         overflow-x: hidden;
+        background-color: black;
 }
 
 header .left {
@@ -18,6 +19,42 @@ header .right {
     color: white;
     top: 30px;
     left: 130px;
+}
+
+.servicios{
+        width: 100%;
+    /* line-height: 24px; */
+    font-size: 40px;
+    margin: 70px;
+    color: white;
+    font-weight: 800;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.servicios h3{
+         width: 710px;
+    font-weight: 800;
+    position: relative;
+    left: 350px;
+}
+.servicios p{
+           font-weight: 300;
+    font-size: 20px;
+    width: 800px;
+    position: relative;
+    left: 300px;
+}
+
+.serviciosimg{
+          width: 1420px;
+}
+
+.serviciosimg img{
+            width: 370px;
+            margin-top: 30px;
+            margin-left: 40px;
+            display: inline-block;
 }
 
 .h3cta {
@@ -47,52 +84,110 @@ header .right {
         background-color: black;
 }
 
-header .right button {
+header .right button{
+        padding: 10px 20px;
+        margin-left: 20px;
         background-color: transparent;
-        border: transparent;
+        border: none;
         color: white;
-        font-family: sans-serif;
-        width: max-content;
-        /* ← ya tiene el mismo width que en hover */
-        padding: 10px;
-        /* ← mismo padding que en hover */
-        transition: 0.5s;
+}
+
+header .right .contacto {
+            background-color: red;
+    /* border: transparent; */
+    color: white;
+    font-family: sans-serif;
+    width: max-content;
+    padding: 10px;
+    transition: 0.5s;
+    border-radius: 40px;
+    width: 130px;
 }
 
 header .right button:hover {
         cursor: pointer;
-        background-color: red;
-        border-radius: 5px;
+        text-decoration: underline;
 }
 
 header .left img {
         width: 70px;
 }
 
+.logocta{
+            width: 600px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
 
+.ctafondoo{
+          width: 100%;
+    height: 670px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    object-fit: fill;
+    z-index: -1;
+}
+
+.programas{
+        background: red;
+    height: 190px;
+    border-radius: 0px 0px 50px 80px;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    top: 560px;
+}
+
+.programas p{
+          display: inline-block;
+    position: relative;
+    top: 108px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.programas img{
+           display: inline-block;
+    position: relative;
+    top: 125px;
+    width: 50px;
+}
+
+.subcta{
+            width: 100%;
+    height: max-content;
+    text-align: center;
+    align-items: center;
+    height: 80px;
+}
+
+.subcta p{
+        display: inline-block;
+        margin-left: 90px;
+        font-weight: bold;
+        font-family: sans-serif;
+}
 /* ===== VIDEO BACKGROUND PERFECTO ===== */
 
 header {
-        position: relative;
-        width: 100%;
-        height: 460px;
-        overflow: hidden;
+          position: relative;
+    width: 100%;
+    height: 760px;
+    overflow: hidden;
 }
 
 header .bgvideo {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100vw;
-        /* 100% width SIEMPRE */
-        height: 100%;
-        /* Se ajusta a la altura del header */
-        object-fit: cover;
-        /* Recorta el video sin deformarlo */
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        filter: brightness(60%);
-        /* Opcional */
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: brightness(39%);
+    border-radius: 0px 0px 140px 140px;
 }
 
 .contacto {
@@ -194,25 +289,7 @@ main .cta {
         flex-direction: column;
         justify-content: space-between;
         height: max-content;
-        /* Ajusta a tu gusto */
 }
-
-
-.buscador {
-        padding: 20px;
-        width: 100%;
-        text-align: center;
-}
-
-.buscador input {
-        background: #00000021;
-        border: transparent;
-        padding: 10px;
-        border-radius: 5px;
-        width: 400px;
-        margin-top: 20px;
-}
-
 
 .productos {
         width: 96%;
@@ -221,14 +298,16 @@ main .cta {
 }
 
 .producto {
-        width: 210px;
-        padding: 30px;
-        background: #80808038;
-        border-radius: 10px;
-        display: inline-block;
-        margin-left: 20px;
-        height: max-content;
-        margin-top: 20px;
+           width: 210px;
+    padding: 30px;
+    background: #80808038;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 20px;
+    height: max-content;
+    margin-top: 20px;
+    background: red;
+    color: white;
 }
 
 .producto button {
@@ -319,4 +398,12 @@ footer {
 
 .ctanavidad{
         animation: infinite 10s linear infinite;
+}
+
+.headertienda{
+            position: relative;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+    background: black;
 }
