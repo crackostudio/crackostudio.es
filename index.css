@@ -64,6 +64,48 @@ header .right {
     padding: 1rem;
 }
 
+.overlay.expandido {
+    position: absolute;
+    top: 49%;
+    left: 72%;
+    transform: translate(-50%, -50%) scale(2);
+    z-index: 999;
+    /* height: 35%; */
+    /* width: 200px; */
+    background: white;
+    padding: 20px 100px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.cerrar{
+            position: relative;
+    right: 228px;
+    bottom: 238px;
+}
+.cerrar:hover{
+        cursor: pointer;
+}
+
+.comprar-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comprar-btn:hover {
+    background-color: #cc0000;
+}
+
+body.modal-activo {
+    overflow: hidden;
+}
 
 .ctabutton {
         background-color: red;
@@ -269,7 +311,17 @@ main .cta {
 .overlay_Noanimado .overlay{
         display: inline-block;
         margin-left: 25px;
+        cursor: pointer;
 }
+
+.overlay_Noanimado video{
+        width: 280px;
+            border: 4px solid red;
+            border-radius: 20px;
+
+}
+
+
 
 
 .right a{
@@ -340,6 +392,21 @@ main .cta {
 html {
         width: 100%;
 }
+.parrafomolestias{
+       position: absolute;
+    top: 510px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    left: 380px;
+    color: white;
+}
+
+.logoindexcontruction{
+         width: 500px;
+    margin: 260px 530px;
+}
 
 @media screen and (max-width: 768px) {
         header {
@@ -365,6 +432,27 @@ html {
                 position: static;
                 margin-top: 10px;
         }
+
+        
+        .logoindexcontruction{
+                width: 260px;
+        margin: 260px 60px;
+        }
+
+
+        .parrafomolestias{
+           position: absolute;
+    top: 380px;
+    left: 0;
+    width: 95%;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+    word-wrap: break-word;
+}
+
 }
 
 
