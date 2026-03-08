@@ -1,352 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cracko Studio - Tienda</title>
-  <link rel="stylesheet" href="index.css">
+  <title>Cracko Studio - Tienda Oficial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   
   <style>
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
+    :root {
+      --accent: #ff5722;
+      --bg-dark: #0f0f0f;
+      --bg-card: #1a1a1a;
+      --text-white: #ffffff;
+      --text-gray: #a0a0a0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-white);
+      margin: 0;
+    }
+
+    /* --- Navbar --- */
+    header.headertienda {
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      position: sticky;
       top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      border-bottom: 1px solid #333;
     }
 
-    .modal-content {
-      background-color: white;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      text-align: center;
-      position: relative;
-    }
-
-    .cerrar {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      color: black;
-      font-size: 25px;
+    .nav-buttons button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 10px 15px;
       cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
-    #paypal-button-container {
-      margin-top: 15px;
+    .nav-buttons button:hover { color: var(--accent); }
+    .botontienda { color: var(--accent) !important; border-bottom: 2px solid var(--accent) !important; }
+
+    /* --- Layout --- */
+    .section-title {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+    .section-title span { color: var(--accent); }
+
+    /* Contenedor para los Packs (Centrados y juntos) */
+    .contenedor-packs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0 5% 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Contenedor para Catálogo (Grid normal) */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 5% 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* --- Tarjeta de Producto --- */
+    .producto {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      height: fit-content; 
+      min-width: 300px;
+      max-width: 350px;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .pack-highlight {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, #1a1a1a 0%, #25100a 100%);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .producto h3 { margin: 10px 0; font-size: 1.1rem; }
+    .precio-old { text-decoration: line-through; color: #555; font-size: 0.9rem; margin: 0; }
+    .precio-new { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0 0 15px 0; }
+
+    /* --- ACORDEÓN --- */
+    .accordion { margin-bottom: 15px; }
+
+    details {
+      background: #222;
+      margin-bottom: 2px;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    summary {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    summary:hover { background: #2a2a2a; }
+
+    .content {
+      padding: 12px;
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      background: #1c1c1c;
+      border-top: 1px solid #333;
+    }
+    .content p { margin: 5px 0; }
+
+    /* --- PayPal --- */
+    .paypal-container {
+      margin-top: auto;
+      min-height: 150px;
+      width: 100%;
+    }
+
+    .paypal-container div { width: 100% !important; }
+
+    @media (max-width: 600px) {
+      .contenedor-packs { flex-direction: column; align-items: center; }
+      .producto { max-width: 100%; width: 100%; }
     }
   </style>
 </head>
 
 <body>
-  <header class="headertienda" style="background-color: black;">
-    <div class="left">
-      <img src="logopng.png" style="margin: 30px 40px;scale: 0.9;" alt="">
-    </div>
-    <div class="right">
-      <a href="index.html">
-        <button>INICIO</button>
-      </a>
-      <button>ACERCA DE</button>
-      <a href="tienda.html">
-        <button class="botontienda">
-          <img id="cart" src="shopping-cart.png" style="width:0px;" alt="">TIENDA
-        </button>
-      </a>
 
-      <a onclick="solicitarNombre()" class="iniciarsesion" style="float: right; margin-right: 150px;">
-        <button class="iniciosesion" style="color: white;"><img style="width: 14px; margin-right: 9px;" src="usuario.png" alt="">Iniciar Sesión</button>
-      </a>
-
-      <a href="contacto.html">
-        <button class="contacto"><img id="telefono" width="0px"
-            src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png" alt="">CONTACTO</button>
-      </a>
+  <header class="headertienda">
+    <div class="logo"><img src="crackostudologo2.png" alt="Logo" style="max-height: 45px;"></div>
+    <div class="nav-buttons">
+      <a href="index.html"><button>INICIO</button></a>
+      <a href="tienda.html"><button class="botontienda">TIENDA</button></a>
+      <a href="contacto.html"><button>CONTACTO</button></a>
     </div>
   </header>
 
-
-
   <main>
-
-    <script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAyAejZ4eRy88aSUeqYY6vXGq9C82BmD14TySPzn3VziSL7g6TtBpB2KFbwKrJqZl2ZHoZgq60wKgNnFc&components=hosted-buttons&disable-funding=venmo&currency=EUR">
-</script>
-
-
-<div id="paypal-container-GMJA3TA7R8NUA"></div>
-<script>
-  function pagarhollow(params) {
-    
-    paypal.HostedButtons({
-      hostedButtonId: "GMJA3TA7R8NUA",
-    }).render("#paypal-container-GMJA3TA7R8NUA")
-  }
-</script>
-    <div class="productos">
-      <div class="producto" style="text-align: center;">
-        <img src="image-removebg-preview.png" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">Overlay hollow Knight</h3>
-        <p class="descripcion">Overlay para cámara inspirado en Hollow Knight, ideal para streamers.</p>
-        <p class="precio" style="text-decoration:line-through">19,99€</p>
-        <p class="precio" style="color: red; font-size: 25px; font-weight: bold; font-family: sans-serif;">15,99€</p>
-        <a href="https://www.paypal.com/ncp/payment/QALFRJWUT9XY4">
-          <button>Comprar</button>
-        </a>
+    <h2 class="section-title">OFERTAS <span>PACKS</span></h2>
+    <div class="contenedor-packs">
+      
+      <div class="producto pack-highlight">
+        <img src="Proyecto nuevo (18).png" alt="Pack">
+        <h3>Pack Básico</h3>
+        <p class="precio-new">29,99€</p>
+        <div class="accordion">
+          <details>
+            <summary>Contenido del Pack <span class="plus">+</span></summary>
+            <div class="content">
+              <p>• Overlay estático para cámara</p>
+              <p>• Pantalla Starting Soon</p>
+              <p>• Pantalla Be Right Back (BRB)</p>
+              <p>• Pantalla Stream Ending</p>
+              <p>• Formato: PNG / JPEG</p>
+            </div>
+          </details>
+        </div>
+        <div class="paypal-container" id="pay-pack-basico"></div>
       </div>
 
-      <div class="producto" style="text-align: center;">
-        <img src="Proyecto nuevo (4).jpg" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">Skyrim overlay cuenta atrás</h3>
-        <p class="descripcion">Overlay de cuenta atrás inspirado en Skyrim, perfecto para iniciar tu stream.</p>
-        <p class="precio" style="text-decoration:line-through">19,99€</p>
-        <p class="precio" style="color: red; font-size: 25px; font-weight: bold; font-family: sans-serif;">15,99€</p>
-        <a href="https://www.paypal.com/ncp/payment/2UEDMR93ER3GG">
-        <button>Comprar</button>
-        </a>
-      </div>
-
-
-      <!-- <div class="producto" style="text-align: center;">
-        <img src="navidadoverlaycamera.png" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">Navidad Overlay Cámara</h3>
-        <p class="descripcion">Renueva tu overlay de cámara por Navidad!</p>
-        <p class="precio" style="color: black; display: block;">9,99€</p>
-        <button>Comprar</button>
-      </div> -->
-
-
-      <div class="producto" style="text-align: center;">
-        <img src="repo overlay camera.png" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">REPO overlay cámara</h3>
-        <p class="descripcion">Overlay personalizado para REPO!</p>
-        <p class="precio" style="text-decoration:line-through">15,99€</p>
-        <p class="precio" style="color: red; font-size: 25px; font-weight: bold; font-family: sans-serif;">12,79€</p>
-        <a href="https://www.paypal.com/ncp/payment/Z5UG3JMTD58EC">
-        <button>Comprar</button>
-        </a>
+      <div class="producto pack-highlight">
+        <img src="Proyecto nuevo (18).png" alt="Pack">
+        <h3>Pack Intermedio</h3>
+        <p class="precio-new">34,99€</p>
+        <div class="accordion">
+          <details>
+            <summary>Contenido del Pack <span class="plus">+</span></summary>
+            <div class="content">
+              <p>• Overlay animado simple (WEBM con transparencia)</p>
+              <p>• Transición básica entre escenas</p>
+              <p>• Marco para cámara</p>
+              <p>• Paneles de redes sociales (Twitter, Instagram, Discord)</p>
+              <p>• Pantallas Starting / BRB / Ending animadas</p>
+              <p>• Formato: PNG</p>
+            </div>
+          </details>
+        </div>
+        <div class="paypal-container" id="pay-pack-intermedio"></div>
       </div>
 
 
-      <div class="producto" style="text-align: center;">
-     <img src="fornitecountdown.png" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">Fornite cuenta atrás</h3>
-        <p class="descripcion">Overlay de cuenta atrás para Fortnite!</p>
-        <p class="precio" style="text-decoration:line-through">15,99€</p>
-        <p class="precio" style="color: red; font-size: 25px; font-weight: bold; font-family: sans-serif;">12,79€</p>
-        <a href="https://www.paypal.com/ncp/payment/6WREKBRFTWMGA">
-        <button>Comprar</button>
-        </a>
-      </div>
-
-      <div class="producto" style="text-align: center;">
-     <img src="it takes two overlay camera.png" width="200px" alt="">
-        <h3 style="font-family: sans-serif;">It Takes Two overlay cámara</h3>
-        <p class="descripcion">Overlay de camara de It Takes Two</p>
-        <p class="precio" style="text-decoration:line-through">10,99€</p>
-        <p class="precio" style="color: red; font-size: 25px; font-weight: bold; font-family: sans-serif;">8,79€</p>
-        <a href="https://www.paypal.com/ncp/payment/SK4ZUXGFQ7NLQ">
-        <button>Comprar</button>
-        </a>
+      <div class="producto pack-highlight">
+        <img src="Proyecto nuevo (18).png" alt="Pack">
+        <h3>Pack Intermedio</h3>
+        <p class="precio-new">49,99€</p>
+        <div class="accordion">
+          <details>
+            <summary>Contenido del Pack <span class="plus">+</span></summary>
+            <div class="content">
+              <p>• Overlay animado simple (WEBM con transparencia)</p>
+              <p>• Transición básica entre escenas</p>
+              <p>• Marco para cámara</p>
+              <p>• Paneles de redes sociales (Twitter, Instagram, Discord)</p>
+              <p>• Pantallas Starting / BRB / Ending animadas</p>
+              <p>• Formato: PNG</p>
+            </div>
+          </details>
+        </div>
+        <div class="paypal-container" id="pay-pack-pro"></div>
       </div>
 
     </div>
+
+    <h2 class="section-title">CATÁLOGO <span>COMPLETO</span></h2>
+    <div class="productos" id="grid-productos"></div>
   </main>
 
-  <!-- Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span id="cerrar" class="cerrar">&times;</span>
-      <img id="modal-img" src="" alt="" style="width: 200px; display: block; margin: 0 auto;">
-      <h3 id="modal-nombre" style="text-align: center; font-family: sans-serif;"></h3>
-      <p id="modal-descripcion" style="text-align: center; font-family: sans-serif;"></p>
-      <p id="modal-precio" style="text-align: center; font-weight: bold;"></p>
-      <div id="paypal-button-container"></div>
-    </div>
-  </div>
-
-  <script>
-const archivosProductos = {
-  "Overlay hollow Knight": "descargas/hollow-knight-overlay.zip",
-  "Skyrim overlay cuenta atrás": "descargas/skyrim-overlay.zip",
-  "Navidad Overlay Cámara": "descargas/navidad-overlay.zip",
-  "REPO overlay cámara": "descargas/repo-overlay.zip",
-  "Overlay Sorneth": "descargas/PurpleTwitchOverlayBanner.png",
-  "Overlay de cuenta atrás para Fortnite!": "descargas/1224-overlay.mp4"
-};
-</script>
-
-<script>
-function descargarArchivo(ruta) {
-  const a = document.createElement("a");
-  a.href = ruta;
-  a.download = "";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-
-  <!-- SDK PayPal -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AVzmhzfhB2uySyPXgW2tPuBumWrShNu-Q-472sza3tNN4nGJkFVadpE88RZiAbArK9P6qc8LJkIdg-YI&currency=EUR"></script>
-
-  <!-- SDK EmailJS -->
+  <script src="https://www.paypal.com/sdk/js?client-id=ARvKAM7l_r__loha0n_UJzASXDLyV9BNOv8j3ilNGtMmMS6IHIhuFnStC0CsuBzhTf6bej7pPJNXnZEH&currency=EUR"></script>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("AVzmhzfhB2uySyPXgW2tPuBumWrShNu-Q-472sza3tNN4nGJkFVadpE88RZiAbArK9P6qc8LJkIdg-YI"); // Reemplaza con tu User ID de EmailJS
-    })();
-  </script>
 
   <script>
-const productossorneth = document.getElementById("sornethproducto");
+    emailjs.init("AVzmhzfhB2uySyPXgW2tPuBumWrShNu-Q-472sza3tNN4nGJkFVadpE88RZiAbArK9P6qc8LJkIdg-YI");
 
-function solicitarNombre() {
-  let nombre = prompt("Como te llamas?");
-  productossorneth.style.display = "none";
-  let confirmar;
-  if (nombre == "Sorneth" || nombre == "soysorneth") {
-    alert("Bienvenido Sorneth!");
-    confirmar = confirm("Quieres ver tus productos para ti?");
-    if (confirmar == true) {
-      productossorneth.style.display = "inline-block";
-    }
-  } else {
-    productossorneth.style.display = "none";
-  }
+    const productosData = [
+      { id: "hk", titulo: "Overlay Hollow Knight", pOld: "19,99", pNew: "15,99", img: "image-removebg-preview.png", desc: "Inspirado en Hollow Knight.", file: "descargas/hollow-knight-overlay.zip" },
+      { id: "skyrim", titulo: "Skyrim overlay cuenta atrás", pOld: "19,99", pNew: "15,99", img: "Proyecto nuevo (4).jpg", desc: "Inspirado en Skyrim.", file: "descargas/skyrim-overlay.zip" },
+      { id: "repo", titulo: "REPO overlay cámara", pOld: "15,99", pNew: "12,79", img: "repo overlay camera.png", desc: "Overlay para REPO!", file: "descargas/repo-overlay.zip" },
+      { id: "fort", titulo: "Fornite cuenta atrás", pOld: "15,99", pNew: "12,79", img: "fornitecountdown.png", desc: "Cuenta atrás Fortnite.", file: "descargas/1224-overlay.mp4" },
+      { id: "itt", titulo: "It Takes Two overlay cámara", pOld: "10,99", pNew: "8,79", img: "it takes two overlay camera.png", desc: "Cámara It Takes Two.", file: "descargas/ittakestwo-overlay.zip" }
+    ];
 
-  const nombreUsuario = document.querySelector(".iniciarsesion button");
-  nombreUsuario.innerHTML = `<img style="width: 14px; margin-right: 5px;" src="usuario.png" alt="">${nombre}`;
-}
+    const grid = document.getElementById('grid-productos');
 
-
-
-    const carrito = document.getElementById("cart");
-    const botontienda = document.querySelector(".botontienda");
-    const telefono = document.getElementById("telefono");
-    const contacto = document.querySelector(".contacto");
-
-    botontienda.addEventListener("mouseenter", () => {
-      carrito.style.width = "10px";
-      carrito.style.marginRight = "5px";
-    });
-    botontienda.addEventListener("mouseleave", () => {
-      carrito.style.width = "0px";
-    });
-    contacto.addEventListener("mouseenter", () => {
-      telefono.style.width = "10px";
-      telefono.style.marginRight = "10px";
-    });
-    contacto.addEventListener("mouseleave", () => {
-      telefono.style.width = "0px";
+    productosData.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'producto';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.titulo}">
+        <h3>${p.titulo}</h3>
+        <p class="precio-old">${p.pOld}€</p>
+        <p class="precio-new">${p.pNew}€</p>
+        <div class="accordion">
+          <details>
+            <summary>Detalles <span class="plus">+</span></summary>
+            <div class="content">${p.desc}</div>
+          </details>
+        </div>
+        <div class="paypal-container" id="btn-${p.id}"></div>
+      `;
+      grid.appendChild(card);
+      renderPaypal(`btn-${p.id}`, p.titulo, p.pNew, p.file);
     });
 
-    // Modal
-    const botonesComprar = document.querySelectorAll(".producto button");
-    const modal = document.getElementById("modal");
-    const cerrar = document.getElementById("cerrar");
-
-    const modalImg = document.getElementById("modal-img");
-    const modalNombre = document.getElementById("modal-nombre");
-    const modalDescripcion = document.getElementById("modal-descripcion");
-    const modalPrecio = document.getElementById("modal-precio");
-    const paypalContainer = document.getElementById("paypal-button-container");
-
-    botonesComprar.forEach(boton => {
-      boton.addEventListener("click", () => {
-        const producto = boton.parentElement;
-        const imgSrc = producto.querySelector("img").src;
-        const nombre = producto.querySelector("h3").innerText;
-        const precioText = producto.querySelector(".precio").innerText;
-        const descripcion = producto.querySelector(".descripcion").innerText;
-
-        modalImg.src = imgSrc;
-        modalNombre.innerText = nombre;
-        modalDescripcion.innerText = descripcion;
-        modalPrecio.innerText = precioText;
-
-        modal.style.display = "block";
-        paypalContainer.innerHTML = "";
-
-        const precio = parseFloat(precioText.replace("€", "").replace(",", "."));
-
-        paypal.Buttons({
-          createOrder: function (data, actions) {
-            return actions.order.create({
-              purchase_units: [{
-                amount: { value: precio.toFixed(2) },
-                description: nombre
-              }]
+    function renderPaypal(id, nombre, precio, archivo) {
+      paypal.Buttons({
+        style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'paypal', tagline: false },
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [{ amount: { value: precio.replace(",", ".") }, description: nombre }]
+          });
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(details => {
+            alert('¡Pago completado! La descarga comenzará ahora.');
+            window.location.href = archivo;
+            emailjs.send("service_3g5jsj8", "template_oj90d3a", {
+              producto: nombre,
+              precio: precio + "€",
+              comprador: details.payer.name.given_name,
+              email: details.payer.email_address
             });
-          },
-          onApprove: function (data, actions) {
-  return actions.order.capture().then(function (details) {
-
-    alert(
-      "Pago completado por " +
-      details.payer.name.given_name +
-      "\nGracias por tu compra!"
-    );
-
-    modal.style.display = "none";
-
-    // 🔽 DESCARGA SEGURA DEL PRODUCTO
-    const nombreProducto = nombre.trim();
-    const archivo = archivosProductos[nombreProducto];
-
-    if (archivo) {
-      descargarArchivo(archivo);
-    } else {
-      alert("Error: archivo no encontrado para " + nombreProducto);
-      console.error("Producto no mapeado:", nombreProducto);
+          });
+        }
+      }).render('#' + id);
     }
 
-    // 📧 EMAIL AL ADMIN
-    emailjs.send(
-      "service_3g5jsj8",
-      "template_oj90d3a",
-      {
-        producto: nombreProducto,
-        descripcion: descripcion,
-        precio: precioText,
-        comprador:
-          details.payer.name.given_name +
-          " " +
-          details.payer.name.surname,
-        email: details.payer.email_address
-      },
-      "xOgcR2POR2f6tPXTk" 
-    ).then(() => {
-      console.log("Pedido enviado correctamente.");
-    }).catch((err) => {
-      console.error("Error al enviar pedido:", err);
-    });
+    // Inicializar Packs con IDs ÚNICOS
+    renderPaypal("pay-pack-basico", "Pack Básico Streamer", "29.99");
+    renderPaypal("pay-pack-intermedio", "Pack Pro Streamer", "34.99");
+    renderPaypal("pay-pack-pro", "Pack Pro Streamer", "49.99");
 
-  });
-}
-
-
-        }).render('#paypal-button-container');
-      });
-    });
-
-    cerrar.addEventListener("click", () => modal.style.display = "none");
-    window.addEventListener("click", (event) => {
-      if (event.target == modal) modal.style.display = "none";
-    });
+    function solicitarNombre() {
+      let n = prompt("¿Cómo te llamas?");
+      if(n) document.getElementById('userBtn').innerText = n.toUpperCase();
+    }
   </script>
-
 </body>
-
 </html>
