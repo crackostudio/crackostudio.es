@@ -22,32 +22,25 @@ header .right {
 }
 
 .servicios{
-        width: 100%;
-    /* line-height: 24px; */
+      width: 100%;
     font-size: 40px;
-    margin: 70px;
+    margin: 70px 0px;
     color: white;
     font-weight: 800;
     font-family: sans-serif;
     text-align: center;
 }
 
-.servicios h3{
-         width: 710px;
-    font-weight: 800;
-    position: relative;
-    left: 350px;
-}
 .servicios p{
-           font-weight: 300;
+     font-weight: 300;
     font-size: 20px;
-    width: 800px;
-    position: relative;
-    left: 300px;
+    max-width: 990px;
+    margin: 0 auto;
+    text-wrap: pretty;
 }
 
 .serviciosimg{
-          width: 1420px;
+            width: 100%;
 }
 
 .serviciosimg img{
@@ -55,6 +48,29 @@ header .right {
             margin-top: 30px;
             margin-left: 40px;
             display: inline-block;
+}
+
+#footerprincipal{
+            background-color: black;
+    color: white;
+    background: black;
+    color: white;
+    position: absolute;
+    top: 1785px;
+    width: 100%;
+    height: 100px;
+    padding: 40px; 
+    margin-left: 200px;
+}
+
+#footerprincipal .logoo{
+        margin-right: 20px;
+}
+
+.enlacesprincipales{
+           display: inline-block;
+    margin-left: 280px;
+    font-family: sans-serif;
 }
 
 .h3cta {
@@ -245,6 +261,15 @@ header .bgvideo {
     font-size: 26px;
 }
 
+.servicios h3{
+            /* width: 100%; */
+    font-weight: 800;
+    position: relative;
+    /* left: 350px; */
+    text-wrap: 20px;
+    text-align: -webkit-center;
+}
+
 main .cta {
         background-image: url(7849232-uhd_2160_4096_25fps.mp4);
         height: 260px;
@@ -321,8 +346,35 @@ main .cta {
 
 }
 
+.buscadorr p{
+            color: white;
+    font-family: sans-serif;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
+.buscadorr select{
+           display: inline-block;
+    margin-left: 20px;
+    background-color: black;
+    border: 2px solid red;
+    color: red;
+    padding: 5px 10px;
+    border-radius: 6px;
+    padding-right: max;
+}
 
+.buscadorr button{
+            padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 110px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
 
 .right a{
         text-decoration: none;
@@ -368,16 +420,22 @@ main .cta {
 }
 
 .producto {
-           width: 210px;
-    padding: 30px;
-    background: #80808038;
-    border-radius: 10px;
-    display: inline-block;
-    margin-left: 20px;
-    height: max-content;
-    margin-top: 20px;
-    background: red;
-    color: white;
+        width: 210px;
+        padding: 30px;
+        background: #80808038;
+        border-radius: 10px;
+        display: inline-block;
+        margin-left: 20px;
+        height: max-content;
+        margin-top: 20px;
+        background:rgb(255, 255, 255);
+        color: red;
+        font-weight: bold;
+        font-family: sans-serif;
+}
+
+.paypal-container iframe button{
+        width: 100%;
 }
 
 .producto button {
