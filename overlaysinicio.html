@@ -1,67 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" href="crackostudologo2.png" type="image/x-icon">
+
+<title>Overlays</title>
+
+<link rel="stylesheet" href="index.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
+
 <body>
-    <header style="
-    position: relative;
-    width: 100%;
-    height: 90px;
-    overflow: hidden;
-">
-        
-        <div class="left">
-            <img src="crackostudologo2.png" style="
-    margin: 30px 40px;
-    scale: 1.3;
-" alt="">
-        </div>
 
-        <div class="right">
-            <a href="index.html">
-            <button>INICIO</button>
-            </a>
-            <a href="acercade.html">
-            <button>ACERCA DE</button>
-            </a>
-            <a href="tienda.html">
-                <button class="botontienda">
-                    TIENDA
-                </button>
-            </a>
+<header style="position:relative;width:100%;height:90px;overflow:hidden;">
 
-            <a href="contacto.html">
-                <button class="contacto">
-                    <img id="telefono" width="0px" src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png"
-                        alt="">
-                    CONTACTO
-                </button>
-            </a>
-        </div>
-    </header>
+<div class="left">
+<img src="crackostudologo2.png" style="margin:30px 40px;scale:1.3;">
+</div>
 
-    <main>
-        <div class="titulo" style="margin: 50px; font-size: 20px;">
-            <h2 style="color: white; font-family: sans-serif;">Overlays de Inicio de Stream</h2>
-            <p style="color: white; font-family: sans-serif;">¡Haz que tus streaming al iniciar se vea más profesional y más retenedor para tu audiencia!</p>
-        </div>
+<div class="right">
 
-        <div class="overlay_Noanimado">
-            <h2 style="color: white; font-family: sans-serif; margin-bottom: 30px;">Overlays sin Animación</h2>
-            <div class="overlay" style="margin-left: 0px;">
-                <img class="primeraimg" src="overlaynoanimado/POPPY PLAYTIME PSD.jpg" alt="">
-                    <p style="color: red; margin-left: 10px; font-family: sans-serif; font-weight: 800;">Poopy Playtime</p>
-            </div>
+<a href="index.html"><button>INICIO</button></a>
 
-             <div class="overlay">
-                <img src="overlaynoanimado/Overlay comenzar.jpg" alt="">
-                    <p style="color: red; margin-left: 10px; font-family: sans-serif; font-weight: 800;">Nombre + comenzamos en </p>
-            </div>
-        </div>
-    </main> 
+<a href="acercade.html"><button>ACERCA DE</button></a>
+
+<a href="tienda.html">
+<button class="botontienda">TIENDA</button>
+</a>
+
+<a href="contacto.html">
+<button class="contacto">CONTACTO</button>
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<div class="buscadorr">
+
+<p>Buscador de contenido:</p>
+
+<select id="categorias">
+        <option value="all">Todas las categorias</option>
+        <optgroup title="Overlyays" label="Overlays" style="background-color: red; color: black;">
+                <option value="Overlaysdecámara" style="background-color: black; color: red">Todos los overlays</option>
+                <option value="Overlaysdecámara" style="background-color: black; color: red">Overlays de cámara</option>
+                <option value="Overlaysdecámara" style="background-color: black; color: red">Overlays de apertura</option>
+                <option value="Overlaysdecámara" style="background-color: black; color: red">Overlays de pausa</option>
+                <option value="Overlaysdecámara" style="background-color: black; color: red">Overlays de final</option>
+        </optgroup>
+                <option value="Transiciones" style="background-color: red; color: black;">Transiciones</option>
+        <option value="Alertas">Alertas</option>
+</select>
+
+<select id="juegos">
+<option value="all">Todos los juegos</option>
+<option value="ResidentEvil">Resident Evil</option>
+<option value="Fornite">Fornite</option>
+<option value="PoppyPlayTime">Poppy PlayTime</option>
+</select>
+
+<button id="buscar">
+<i class="fa-solid fa-magnifying-glass"></i> Buscar
+</button>
+
+</div>
+
+<div class="titulo" style="margin:50px;font-size:20px;">
+<h2 style="color:white;font-family:sans-serif;">Overlays de Inicio de Stream</h2>
+
+<p style="color:white;font-family:sans-serif;">
+¡Haz que tus streaming al iniciar se vea más profesional y más retenedor!
+</p>
+
+<button onclick="window.location.href='mailto:crackostudioagency@gmail.com?subject=Contenido personalizado&body=Hola, quiero más información sobre contenido personalizado.'" style="padding: 10px 20px; background-color: white; color: black; border:none; cursor: pointer; border-radius: 10px;">
+  Quiero tener mi contenido personalizado!
+</button>
+
+</div>
+
+<div class="overlay_Noanimado">
+
+<h2 style="color:white;font-family:sans-serif;margin-bottom:30px;">
+Overlays sin Animación
+</h2>
+
+<!-- OVERLAY 1 -->
+
+<div class="overlay"
+data-category="Overlays"
+data-game="PoppyPlayTime"
+data-descripcion="Este overlay es perfecto para Poppy Playtime."
+data-comprar="https://www.paypal.com/ncp/payment/MPRJHGPHFGV74">
+
+<img class="primeraimg" src="overlaynoanimado/POPPY PLAYTIME PSD.jpg">
+
+<p style="color:red;margin-left:10px;font-family:sans-serif;font-weight:800;">
+Poppy Playtime
+</p>
+
+</div>
+
+<!-- OVERLAY 2 -->
+
+<div class="overlay"
+data-category="Overlays"
+data-game=""
+data-descripcion="Overlay para comenzar la transmisión con cuenta regresiva."
+data-comprar="https://tutienda.com/comprar-overlay-comenzamos">
+
+<img src="overlaynoanimado/Overlay comenzar.jpg">
+
+<p style="color:red;margin-left:10px;font-family:sans-serif;font-weight:800;">
+Nombre + comenzamos en
+</p>
+
+</div>
+
+<h2 style="color:white;font-family:sans-serif;margin-bottom:30px;">
+Overlays con Animación
+</h2>
+
+<!-- OVERLAY 3 -->
+
+<div class="overlay"
+data-category="Overlays"
+data-game="PoppyPlayTime"
+data-descripcion="Overlay animado ideal para streaming profesional."
+data-comprar="https://tutienda.com/comprar-timeline1">
+
+<video src="Timeline 1.mov" autoplay loop muted></video>
+
+<p style="color:red;margin-left:10px;font-family:sans-serif;font-weight:800;">
+Poppy Playtime + nombre
+</p>
+
+</div>
+
+<div class="overlay"
+data-category="Overlays"
+data-game="ResidentEvil"
+data-descripcion="Overlay animado ideal para streaming profesional."
+data-comprar="https://tutienda.com/comprar-timeline1">
+
+<video src="prueba11.mov" autoplay loop muted></video>
+
+<p style="color:red;margin-left:10px;font-family:sans-serif;font-weight:800;">
+Resident Evil + nombre 3D
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+const overlays = document.querySelectorAll(".overlay");
+
+/* ---------- FILTRADO ---------- */
+
+document.getElementById("buscar").addEventListener("click", function(){
+
+const categoriaSeleccionada = document.getElementById("categorias").value;
+const juegoSeleccionado = document.getElementById("juegos").value;
+
+overlays.forEach(function(overlay){
+
+const categoria = overlay.getAttribute("data-category");
+const juego = overlay.getAttribute("data-game");
+
+if(
+(categoriaSeleccionada === "all" || categoria === categoriaSeleccionada) &&
+(juegoSeleccionado === "all" || juego === juegoSeleccionado)
+){
+overlay.style.display = "block";
+}
+else{
+overlay.style.display = "none";
+}
+
+});
+
+});
+
+/* ---------- OVERLAYS EXPANDIBLES ---------- */
+
+overlays.forEach(overlay => {
+
+overlay.addEventListener("click", function () {
+
+overlays.forEach(o => {
+
+if (o !== overlay) {
+
+o.classList.remove("expandido");
+
+const btn = o.querySelector(".cerrar");
+if (btn) btn.remove();
+
+const desc = o.querySelector(".descripcion-overlay");
+if (desc) desc.remove();
+
+const comprar = o.querySelector(".comprar-btn");
+if (comprar) comprar.remove();
+
+}
+
+});
+
+if (overlay.classList.contains("expandido")) return;
+
+overlay.classList.add("expandido");
+
+const cerrarBtn = document.createElement("div");
+cerrarBtn.classList.add("cerrar");
+cerrarBtn.textContent = "✖";
+overlay.appendChild(cerrarBtn);
+
+const descripcion = document.createElement("div");
+descripcion.classList.add("descripcion-overlay");
+descripcion.textContent = overlay.getAttribute("data-descripcion");
+overlay.appendChild(descripcion);
+
+const comprarBtn = document.createElement("button");
+comprarBtn.classList.add("comprar-btn");
+comprarBtn.textContent = "Comprar";
+overlay.appendChild(comprarBtn);
+
+comprarBtn.addEventListener("click", function(e){
+
+e.stopPropagation();
+
+const url = overlay.getAttribute("data-comprar");
+
+window.open(url, "_blank");
+
+});
+
+cerrarBtn.addEventListener("click", function(e){
+
+e.stopPropagation();
+
+overlay.classList.remove("expandido");
+cerrarBtn.remove();
+descripcion.remove();
+comprarBtn.remove();
+
+});
+
+});
+
+});
+
+</script>
+
 </body>
 </html>
