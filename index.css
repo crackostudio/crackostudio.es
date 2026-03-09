@@ -419,6 +419,22 @@ main .cta {
         padding: 30px;
 }
 
+.cartelapertura {
+        padding: 10px 20px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-radius: 5px;
+    text-align: center;
+    background-color: gray;
+    width: 60px;
+    height: 10px;
+    position: absolute;
+    top: 0px;
+    left: 380px;
+}
+
 .producto {
         width: 210px;
         padding: 30px;
@@ -474,12 +490,11 @@ html {
         }
 
         header .right {
-                display: inline;
-                flex-direction: column;
-                align-items: center;
-                margin-left: 0;
-                gap: 10px;
-                margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra los botones y el cartel */
+    gap: 10px;           /* espacio entre botones y cartel */
+
         }
 
         .producto {
