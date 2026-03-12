@@ -168,6 +168,7 @@
     <div class="nav-buttons">
       <a href="index.html"><button>INICIO</button></a>
       <a href="tienda.html"><button class="botontienda">TIENDA</button></a>
+      <button class="iniciosesionn" onclick="iniciarsesiontienda()">Iniciar Sesión 🙍</button>
       <a href="contacto.html"><button>CONTACTO</button></a>
     </div>
   </header>
@@ -230,8 +231,6 @@
               <p>• Paneles de redes sociales (Twitter, Instagram, Discord)</p>
               <p>• Pantallas Starting / BRB / Ending animadas</p>
               <p>• Formato: PNG</p>
-              <p>· Alerta básica</p>
-              <p>· Marco de cámara extra</p>
             </div>
           </details>
         </div>
@@ -242,6 +241,21 @@
 
     <h2 class="section-title">CATÁLOGO <span>COMPLETO</span></h2>
     <div class="productos" id="grid-productos"></div>
+    <div class="producto" id="andrius" style="
+    width: max-content;
+    height: max-content;
+    position: relative;
+    position: absolute;
+    top: 1520px;
+    left: 430px;
+">
+     <a href="pack.zip" download>
+  <button style="
+    padding: 20px;
+    border-radius: 20px;
+">Pack Andriuuspelvis</button>
+</a>
+    </div>
   </main>
 
   <script src="https://www.paypal.com/sdk/js?client-id=ARvKAM7l_r__loha0n_UJzASXDLyV9BNOv8j3ilNGtMmMS6IHIhuFnStC0CsuBzhTf6bej7pPJNXnZEH&currency=EUR"></script>
@@ -255,7 +269,7 @@
       { id: "skyrim", titulo: "Skyrim overlay cuenta atrás", pOld: "19,99", pNew: "15,99", img: "Proyecto nuevo (4).jpg", desc: "Inspirado en Skyrim.", file: "descargas/skyrim-overlay.zip" },
       { id: "repo", titulo: "REPO overlay cámara", pOld: "15,99", pNew: "12,79", img: "repo overlay camera.png", desc: "Overlay para REPO!", file: "descargas/repo-overlay.zip" },
       { id: "fort", titulo: "Fornite cuenta atrás", pOld: "15,99", pNew: "12,79", img: "fornitecountdown.png", desc: "Cuenta atrás Fortnite.", file: "descargas/1224-overlay.mp4" },
-      { id: "itt", titulo: "It Takes Two overlay cámara", pOld: "10,99", pNew: "8,79", img: "it takes two overlay camera.png", desc: "Cámara It Takes Two.", file: "descargas/ittakestwo-overlay.zip" }
+      { id: "itt", titulo: "It Takes Two overlay cámara", pOld: "10,99", pNew: "8,79", img: "it takes two overlay camera.png", desc: "Cámara It Takes Two.", file: "descargas/ittakestwo-overlay.zip" },
     ];
 
     const grid = document.getElementById('grid-productos');
@@ -312,7 +326,22 @@
       let n = prompt("¿Cómo te llamas?");
       if(n) document.getElementById('userBtn').innerText = n.toUpperCase();
     }
-  </script>
-</body>
+  
+    var andriuspack = document.getElementById("andrius");
 
+    andriuspack.style.display = "none";
+    
+    //Inicio sesión
+    function iniciarsesiontienda() {
+      var nombre = prompt("Pon tu numero de usuario")
+      
+      if (nombre == 4) {
+        andriuspack.style.display = "block";
+      }
+    }
+  
+  </script>
+
+
+</body>
 </html>
