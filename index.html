@@ -17,21 +17,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <style>
         /* Estilo mínimo para que el cartel se vea */
         .cartelapertura {
-               padding: 5px 15px;
-    display: inline-block;
-    color: white;
-    font-weight: bold;
-    font-family: sans-serif;
-    border-radius: 5px;
-    text-align: center;
-    /* background-color: green; */
-    z-index: 10;
-    position: relative;
-    min-width: 80px;
-    left: 20px;
-    height: 19px;
-    background-color: transparent;
-    animation: flash infinite 2s forwards;
+            padding: 5px 15px;
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+            border-radius: 5px;
+            text-align: center;
+            /* background-color: green; */
+            z-index: 10;
+            position: relative;
+            min-width: 80px;
+            left: 20px;
+            height: 19px;
+            background-color: transparent;
+            animation: flash infinite 2s forwards;
         }
 
         @keyframes flash {
@@ -46,7 +46,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
         }
 
-
         @keyframes flashRojo {
             0%{
                 background-color: transparent;
@@ -59,7 +58,104 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
         }
 
+        /* ==========================================
+           🎨 NUEVOS ESTILOS DEL POP-UP (CRACKO HUB)
+           ========================================== */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 12, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
 
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .popup-content {
+            background: #121216;
+            border: 2px solid #ef4444; /* Borde rojo característico */
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .popup-close:hover {
+            color: #ffffff;
+        }
+
+        .popup-logo {
+            max-width: 160px;
+            margin-bottom: 15px;
+        }
+
+        .popup-content h2 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .popup-content p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin: 0 0 25px 0;
+        }
+
+        .popup-btn {
+            display: inline-block;
+            background: #ef4444;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 14px 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .popup-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+        }
     </style>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -76,6 +172,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQWLZ4G5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ==========================================
+       MODAL POP-UP (CRACKO STUDIO HUB SOFTWARE)
+       ========================================== -->
+    <div id="softwarePopup" class="popup-overlay">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <img src="crackostudologo2.png" class="popup-logo" alt="Cracko Studio Logo">
+            <h2>¡Llegó Cracko Studio Hub!</h2>
+            <p>He diseñado nuestro software oficial para creadores. Configura tus marcos de neón en tiempo real, añade tus marcas, previsualiza tu webcam y exporta overlays profesionales con transparencias en segundos de manera autónoma.</p>
+            <a href="https://drive.google.com/drive/folders/1twMwSrzrgG3zBUtB0J5sguOvKgW-U27z?usp=sharing" target="_blank" class="popup-btn" onclick="closePopup()">Descargar Software Gratis</a>
+        </div>
+    </div>
+
     <header>
         <div class="cta" style="text-align: center; width: 100%;">
             <h3 style="width: max-content; position: relative; left: 150px; font-size: 35px; top: 30px;">HOLA NOSOTROS SOMOS...</h3>
@@ -116,9 +226,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </header>
 
-    <main style="
-    height: max-content;
-">
+    <main style="height: max-content;">
 
 <script
   async
@@ -171,28 +279,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </a>
             </div>
             <div class="enlacesprincipales">
-                <h2 style="
-    position: relative;
-    bottom: 60px;
-">Politicas y Privacidad</h2>
-                <p style="
-    bottom: 50px;
-    position: relative;
-    text-align: center;"
->FAQ</p>
+                <h2 style="position: relative; bottom: 60px;">Politicas y Privacidad</h2>
+                <p style="bottom: 50px; position: relative; text-align: center;">FAQ</p>
             </div>
             <div class="enlacesprincipales">
-                <h2 style="
-    position: relative;
-    bottom: 55px;
-">¡Siguenos!</h2>
-                <img src="" style="
-    position: relative;
-    bottom: 45px;
-    /* background: white; */
-    width: 20px;
-    height: 20px;
-" class="discord" alt="">
+                <h2 style="position: relative; bottom: 55px;">¡Siguenos!</h2>
+                <img src="" style="position: relative; bottom: 45px; width: 20px; height: 20px;" class="discord" alt="">
                 <img src="" class="instagram" alt="">
                 <img src="" class="tiktok" alt="">
             </div>
@@ -208,8 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (horas >= 22 || horas < 9) {
                 cartel.textContent = "Cerrado";
                 cartel.style.border = "2px solid red";
-            cartel.style.animation = "flashRojo 2s infinite";
-
+                cartel.style.animation = "flashRojo 2s infinite";
             } else {
                 cartel.textContent = "Abierto";
                 cartel.style.border = "2px solid green";
@@ -219,14 +310,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         actualizarCartel(); // al cargar
         setInterval(actualizarCartel, 60000); // cada 60 segundos
+
+
+        // ==========================================
+        // ⚙️ CONTROL LÓGICO DEL POP-UP
+        // ==========================================
+        const popup = document.getElementById('softwarePopup');
+
+        function openPopup() {
+            popup.classList.add('active');
+        }
+
+        function closePopup() {
+            popup.classList.remove('active');
+        }
+
+        // Cierra el pop-up si hacen clic fuera del recuadro del contenido
+        window.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+
+        // Retraso de 3 segundos (3000ms) para que el pop-up no sea tan invasivo al cargar instantáneamente
+        setTimeout(openPopup, 3000);
     </script>
 
-        
     <script
-    chatbot_id="69b3dbeab4f4ffcfeb8f1a29"
-    data-type="default"
-    src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
-></script>
+        chatbot_id="69b3dbeab4f4ffcfeb8f1a29"
+        data-type="default"
+        src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
+    ></script>
 </body>
 
 </html>
