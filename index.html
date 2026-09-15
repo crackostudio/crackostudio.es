@@ -1,346 +1,692 @@
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta name="description" content="Cracko Studio es una empresa dedicada a la creación de overlays, transiciones y servicios de edición de video para streamers. Nuestro objetivo es ayudar a los streamers a mejorar la calidad visual de sus transmisiones y atraer a más espectadores. Ofrecemos una amplia variedad de diseños personalizados y servicios de edición para satisfacer las necesidades de cada streamer. Con nuestro equipo de diseñadores y editores profesionales, garantizamos resultados de alta calidad que harán que tu canal destaque en el mundo del streaming. ¡Haz crecer tu comunidad con Cracko Studio!">
-    <meta charset="UTF-8">
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KQWLZ4G5');</script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cracko Studio</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" href="Plugin icon - 2 (1).png" style="object-fit:cover" type="image/x-icon">
-    <style>
-        /* Estilo mínimo para que el cartel se vea */
-        .cartelapertura {
-            padding: 5px 15px;
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            font-family: sans-serif;
-            border-radius: 5px;
-            text-align: center;
-            /* background-color: green; */
-            z-index: 10;
-            position: relative;
-            min-width: 80px;
-            left: 20px;
-            height: 19px;
-            background-color: transparent;
-            animation: flash infinite 2s forwards;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @keyframes flash {
-            0%{
-                background-color: transparent;
-            }
-            50%{
-                background-color: #00800021;
-            }
-            100%{
-                background-color: #008000a0;
-            }
-        }
+  <title>Cracko Studio — Overlays, transiciones y edición para streamers</title>
 
-        @keyframes flashRojo {
-            0%{
-                background-color: transparent;
-            }
-            50%{
-                background-color: #80000021;
-            }
-            100%{
-                background-color: #800000a0;
-            }
-        }
+  <meta
+    name="description"
+    content="Cracko Studio diseña overlays, transiciones y vídeo para creadores de contenido en directo. Haz que tu canal se vea como una emisión profesional desde el primer segundo."
+  >
+  <meta name="theme-color" content="#0a0a0a">
 
-        /* ==========================================
-           🎨 NUEVOS ESTILOS DEL POP-UP (CRACKO HUB)
-           ========================================== */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 12, 0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
+  <link rel="icon" href="icono.png" style="object-fit:fill" type="image/x-icon">
 
-        .popup-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700;900&display=swap"
+    rel="stylesheet"
+  >
 
-        .popup-content {
-            background: #121216;
-            border: 2px solid #ef4444; /* Borde rojo característico */
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
-            border-radius: 16px;
-            width: 90%;
-            max-width: 500px;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            transform: scale(0.85);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .popup-overlay.active .popup-content {
-            transform: scale(1);
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            color: #64748b;
-            cursor: pointer;
-            transition: color 0.2s;
-            user-select: none;
-        }
-
-        .popup-close:hover {
-            color: #ffffff;
-        }
-
-        .popup-logo {
-            max-width: 160px;
-            margin-bottom: 15px;
-        }
-
-        .popup-content h2 {
-            font-size: 24px;
-            margin: 0 0 10px 0;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        .popup-content p {
-            font-size: 14px;
-            color: #94a3b8;
-            line-height: 1.5;
-            margin: 0 0 25px 0;
-        }
-
-        .popup-btn {
-            display: inline-block;
-            background: #ef4444;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-            transition: all 0.2s ease;
-        }
-
-        .popup-btn:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
-        }
-    </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RZL41BVVB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-9RZL41BVVB');
-</script>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQWLZ4G5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
-    <!-- ==========================================
-       MODAL POP-UP (CRACKO STUDIO HUB SOFTWARE)
-       ========================================== -->
-    <div id="softwarePopup" class="popup-overlay">
-        <div class="popup-content">
-            <span class="popup-close" onclick="closePopup()">&times;</span>
-            <img src="crackostudologo2.png" class="popup-logo" alt="Cracko Studio Logo">
-            <h2>¡Llegó Cracko Studio Hub!</h2>
-            <p>He diseñado nuestro software oficial para creadores. Configura tus marcos de neón en tiempo real, añade tus marcas, previsualiza tu webcam y exporta overlays profesionales con transparencias en segundos de manera autónoma.</p>
-            <a href="Cracko Studio Hub-win32-x64 (2).zip" target="_blank" class="popup-btn" onclick="closePopup()">Descargar Software Gratis</a>
-        </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+
+      <a href="#top" class="logo" aria-label="Cracko Studio — Inicio">
+        <img
+          src="crackostudologo2.png"
+          alt="Cracko Studio"
+          class="logo-mark"
+        >
+      </a>
+
+      <nav
+        class="main-nav"
+        id="main-nav"
+        aria-label="Navegación principal"
+      >
+        <a href="#top">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#hub">Hub</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="#chat">Opiniones</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contacto.html" class="btn btn-ghost">
+          Contacto
+        </a>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO VIDEO -->
+    <div class="hero-video" aria-hidden="true">
+      <video
+        class="hero-bg"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      >
+        <source src="0001-0071 (2).mp4" type="video/mp4">
+      </video>
     </div>
 
-    <header>
-        <div class="cta" style="text-align: center; width: 100%;">
-            <h3 style="width: max-content; position: relative; left: 150px; font-size: 35px; top: 30px;">HOLA NOSOTROS SOMOS...</h3>
-            <img src="crackostudologo2.png" class="logocta" alt="">
-            <div class="subcta">
-                <p>Streamers</p>
-                <p>Overlays</p>
-                <p>Transiciones</p>
-            </div>
-            <div class="programas">
-                <p>HERRAMIENTAS QUE UTILIZAMOS</p>
-                <img src="logos/image 3.png" alt="">
-                <img src="logos/Adobe_After_Effects_CC_icon.svg 1.png" alt="">
-                <img src="logos/Adobe_Photoshop_CC_icon.svg 1.png" alt="">
-                <img src="logos/Blender_logo_no_text.svg 1.png" alt="">
-            </div>
-            <img src="ctafondoo.png" class="ctafondoo" alt="">
-        </div>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
 
-        <div class="left">
-            <img src="crackostudologo2.png" style="margin: 30px 40px; scale: 1.3;" alt="">
-        </div>
+      <div class="frame-corner tl" aria-hidden="true"></div>
+      <div class="frame-corner tr" aria-hidden="true"></div>
+      <div class="frame-corner bl" aria-hidden="true"></div>
+      <div class="frame-corner br" aria-hidden="true"></div>
 
-        <div class="right">
-            <a href="index.html"><button>INICIO</button></a>
-            <a href="acercade.html"><button>ACERCA DE</button></a>
-            <a href="tienda.html"><button class="botontienda">TIENDA</button></a>
+      <div class="hero-inner">
 
-            <!-- CARTEL ABIERTO / CERRADO -->
-            <div class="cartelapertura"></div>
+        <div class="hero-copy">
 
-            <a href="contacto.html">
-                <button class="contacto">
-                    <img id="telefono" width="0px" src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png" alt="">
-                    CONTACTO
-                </button>
+          <p class="eyebrow">CRACKO STUDIO / STREAM DESIGN</p>
+
+          <h1 id="hero-title">
+            Tu stream, listo<br>
+            para salir en directo.
+          </h1>
+
+          <p class="hero-lead">
+            Diseñamos los overlays, las transiciones y el vídeo que hacen
+            que un canal se vea como una emisión de verdad. Tú te preocupas
+            de jugar y hablar con tu gente; nosotros de que se vea bien.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#servicios" class="btn btn-primary">
+              Ver servicios
             </a>
-        </div>
-    </header>
 
-    <main style="height: max-content;">
+            <a href="#hub" class="btn btn-outline">
+              Descargar Cracko Hub
+            </a>
+          </div>
 
-<script
-  async
-  src="https://forms.us.benchmarksend.com/assets/embed.js"
-></script>
-<div data-bme-form-id="bBFBykwBdNsnYgDZdPWso"></div>
-<h1>Sube de nivel tu streaming</h1>
-        <div class="servicios">
-            <h3>¡PASA DE POCOS VIEWERS A <div class="muchos" style="color: red; font-weight: 800; display: inline-block;">MUCHOS</div> MÁS!</h3>
-            <p>Empezar en el mundo del streaming puede ser difícil al principio crecer, por eso nosotros estamos aqui, para ayudarte a crecer. No te lo pienses 2 veces y comienza a invertir para tu streaming gracias a nuestros servicios que ofrecemos!</p>
-            
-            <div class="serviciosimg">
-                <a href="overlaysinicio.html"><img style="margin-left: 0px;" src="Group 33.png" alt=""></a>
-                <img src="Group 34 (1).png" alt="">    
-                <img src="Proyecto nuevo (8).jpg" style="border: 4px solid red; border-radius: 20px;" alt="">
-                    <div class="servicio" style="
-    width: 20%;
-    text-align: center;
-    font-size: 20px;
-    background: red;
-    padding: 40px 0px;
-    border-radius: 20px;
-    left: 30px;
-    margin-left: 760px;
-    margin-top: 30px;
-">
-                        <h2>Edición de video</h2>
-                    </div>
+          <dl class="hero-stats">
+            <div>
+              <dt>6+</dt>
+              <dd>canales vestidos</dd>
             </div>
+
+            <div>
+              <dt>3</dt>
+              <dd>días de entrega media</dd>
+            </div>
+
+            <div>
+              <dt>4.9</dt>
+              <dd>valoración media</dd>
+            </div>
+          </dl>
+
         </div>
 
-        <h3 style="color: white; font-family: sans-serif; text-align: center; margin: 60px; font-size: 30px;">¡LA OPINIÓN DE NUESTROS CLIENTES!</h3>
+        <div
+          class="hero-preview"
+          role="img"
+          aria-label="Vista previa de un overlay de streaming con webcam, marco de neón y panel de alertas"
+        >
+          <div class="preview-panel">
 
-        <div id="shapo-widget-8a0e2842a21bee113210" style="margin-bottom: 50px;min-width: 100%;width: 100%;height: 700px;"></div>
-        <script id="shapo-embed-js" type="text/javascript" src="https://cdn.shapo.io/js/embed.js" defer></script>
-    </main>
+            <div class="preview-topbar" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
 
-        <footer id="footerprincipal">
-            <img src="crackostudologo2.png" width="150px" class="logoo" style="position: absolute;" alt="">
-            <div class="enlacesprincipales">
-                <h2>Enlaces Principales</h2>
-                <a style="color: white; text-decoration: none;" href="acercade.html">
-                    <p>Sobre nosotros</p>
-                </a>
-                <a style="color: white; text-decoration: none;" href="tienda.html">
-                    <p>Tienda</p>
-                </a>
-                <a style="color: white; text-decoration: none;" href="contacto.html">
-                    <p>Contactar</p>
-                </a>
+              <span class="preview-title">
+                escena · principal.overlay
+              </span>
             </div>
-            <div class="enlacesprincipales">
-                <h2 style="position: relative; bottom: 60px;">Politicas y Privacidad</h2>
-                <p style="bottom: 50px; position: relative; text-align: center;">FAQ</p>
+
+            <div class="preview-canvas">
+
+              <div class="preview-cam">
+                <img
+                  src="Plugin icon - 2 (1).png"
+                  alt=""
+                >
+              </div>
+
+              <div class="preview-alert">
+                <strong>Nuevo_sub_47</strong>
+                se ha suscrito
+              </div>
+
+              <div
+                class="preview-bars"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="preview-label">
+                Cracko_Studio · en directo
+              </div>
+
             </div>
-            <div class="enlacesprincipales">
-                <h2 style="position: relative; bottom: 55px;">¡Siguenos!</h2>
-                <img src="" style="position: relative; bottom: 45px; width: 20px; height: 20px;" class="discord" alt="">
-                <img src="" class="instagram" alt="">
-                <img src="" class="tiktok" alt="">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section
+      class="services"
+      id="servicios"
+      aria-labelledby="services-title"
+    >
+
+      <div class="section-head">
+        <h2 id="services-title">
+          Tres piezas, un mismo canal
+        </h2>
+
+        <p>
+          Cambia entre nuestras escenas y mira qué resolvemos en cada una.
+        </p>
+      </div>
+
+      <div class="scene-switcher">
+
+        <div
+          class="scene-tabs"
+          role="tablist"
+          aria-label="Servicios de Cracko Studio"
+        >
+
+          <button
+            type="button"
+            class="scene-tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="scene-overlays"
+            id="tab-overlays"
+            data-scene="overlays"
+          >
+            <span class="scene-num">01</span>
+
+            <span>
+              <strong>Overlays</strong>
+              <small>
+                Marcos, alertas y paneles para tu pantalla
+              </small>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="scene-tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="scene-transiciones"
+            id="tab-transiciones"
+            data-scene="transiciones"
+            tabindex="-1"
+          >
+            <span class="scene-num">02</span>
+
+            <span>
+              <strong>Transiciones</strong>
+              <small>
+                Cortes animados entre escenas
+              </small>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="scene-tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="scene-edicion"
+            id="tab-edicion"
+            data-scene="edicion"
+            tabindex="-1"
+          >
+            <span class="scene-num">03</span>
+
+            <span>
+              <strong>Edición de vídeo</strong>
+              <small>
+                Clips y resúmenes para redes
+              </small>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="scene-stage">
+
+          <!-- OVERLAYS -->
+          <article
+            class="scene-panel is-active"
+            id="scene-overlays"
+            role="tabpanel"
+            aria-labelledby="tab-overlays"
+            data-scene-panel="overlays"
+          >
+
+            <div
+              class="scene-visual visual-overlays"
+              aria-hidden="true"
+            >
+              <div class="v-frame"></div>
+
+              <div class="v-cam">
+                <img
+                  src="Purple Twitch Overlay Banner.png"
+                  alt=""
+                >
+              </div>
             </div>
-        </footer>
 
-    <script>
-        // Obtenemos la hora local y actualizamos el cartel
-        function actualizarCartel() {
-            const ahora = new Date();
-            const horas = ahora.getHours();
-            const cartel = document.querySelector(".cartelapertura");
+            <div class="scene-text">
 
-            if (horas >= 22 || horas < 9) {
-                cartel.textContent = "Cerrado";
-                cartel.style.border = "2px solid red";
-                cartel.style.animation = "flashRojo 2s infinite";
-            } else {
-                cartel.textContent = "Abierto";
-                cartel.style.border = "2px solid green";
-                cartel.style.backgroundColor = "#00800047";
-            }
-        }
+              <h3>Overlays a medida</h3>
 
-        actualizarCartel(); // al cargar
-        setInterval(actualizarCartel, 60000); // cada 60 segundos
+              <p>
+                Marco de cámara, barra de información, paneles de
+                "empieza pronto" y "ya volvemos", y alertas de nuevos
+                seguidores o suscripciones. Todo con la misma paleta,
+                para que tu canal se reconozca de un vistazo.
+              </p>
 
+              <ul class="scene-list">
+                <li>Marcos con y sin webcam</li>
+                <li>Alertas animadas de eventos</li>
+                <li>Paneles de pausa e inicio</li>
+              </ul>
 
-        // ==========================================
-        // ⚙️ CONTROL LÓGICO DEL POP-UP
-        // ==========================================
-        const popup = document.getElementById('softwarePopup');
+            </div>
+          </article>
 
-        function openPopup() {
-            popup.classList.add('active');
-        }
+          <!-- TRANSICIONES -->
+          <article
+            class="scene-panel"
+            id="scene-transiciones"
+            role="tabpanel"
+            aria-labelledby="tab-transiciones"
+            data-scene-panel="transiciones"
+            hidden
+          >
 
-        function closePopup() {
-            popup.classList.remove('active');
-        }
+            <div
+              class="scene-visual visual-transiciones"
+              aria-hidden="true"
+            >
+              <div class="v-shard s1"></div>
+              <div class="v-shard s2"></div>
+              <div class="v-shard s3"></div>
+            </div>
 
-        // Cierra el pop-up si hacen clic fuera del recuadro del contenido
-        window.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup();
-            }
-        });
+            <div class="scene-text">
 
-        // Retraso de 3 segundos (3000ms) para que el pop-up no sea tan invasivo al cargar instantáneamente
-        setTimeout(openPopup, 3000);
-    </script>
+              <h3>Transiciones con sello propio</h3>
 
-    <script
-        chatbot_id="69b3dbeab4f4ffcfeb8f1a29"
-        data-type="default"
-        src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
-    ></script>
+              <p>
+                El salto entre "empezando" y el juego, o entre una escena
+                y otra, dice tanto de tu canal como el propio overlay.
+                Animamos un corte corto y reconocible que puedes
+                reutilizar en cada directo.
+              </p>
+
+              <ul class="scene-list">
+                <li>Entrada y cierre de stream</li>
+                <li>Cambios de escena en directo</li>
+                <li>Versión con y sin sonido</li>
+              </ul>
+
+            </div>
+          </article>
+
+          <!-- EDICIÓN -->
+          <article
+            class="scene-panel"
+            id="scene-edicion"
+            role="tabpanel"
+            aria-labelledby="tab-edicion"
+            data-scene-panel="edicion"
+            hidden
+          >
+
+            <div
+              class="scene-visual visual-edicion"
+              aria-hidden="true"
+            >
+              <div class="v-track">
+                <span class="v-clip c1"></span>
+                <span class="v-clip c2"></span>
+                <span class="v-clip c3"></span>
+              </div>
+
+              <div class="v-playhead"></div>
+            </div>
+
+            <div class="scene-text">
+
+              <h3>Lo mejor de cada directo, editado</h3>
+
+              <p>
+                Convertimos tus horas de directo en clips cortos para
+                redes y resúmenes para YouTube, con ritmo de edición y
+                subtítulos pensados para que alguien que no te conoce
+                se quede viendo.
+              </p>
+
+              <ul class="scene-list">
+                <li>Clips verticales para redes</li>
+                <li>Resúmenes semanales</li>
+                <li>Subtítulos incluidos</li>
+              </ul>
+
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section
+      class="tools"
+      aria-labelledby="tools-title"
+    >
+
+      <div class="section-head">
+        <h2 id="tools-title">
+          Con qué lo construimos
+        </h2>
+
+        <p>
+          El mismo flujo de trabajo en cada encargo,
+          de boceto a archivo final.
+        </p>
+      </div>
+
+      <ul class="tool-list">
+
+        <li>
+          <span
+            class="tool-badge tb-ae"
+            aria-hidden="true"
+          >Ae</span>
+          <span>After Effects</span>
+        </li>
+
+        <li>
+          <span
+            class="tool-badge tb-ps"
+            aria-hidden="true"
+          >Ps</span>
+          <span>Photoshop</span>
+        </li>
+
+        <li>
+          <span
+            class="tool-badge tb-bl"
+            aria-hidden="true"
+          >Bl</span>
+          <span>Blender</span>
+        </li>
+
+        <li>
+          <span
+            class="tool-badge tb-il"
+            aria-hidden="true"
+          >Il</span>
+          <span>Illustrator</span>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- HUB -->
+    <section
+      class="hub"
+      id="hub"
+      aria-labelledby="hub-title"
+    >
+
+      <div class="hub-inner">
+
+        <div class="hub-copy">
+
+          <div class="on-air on-air-alt">
+            <span class="dot" aria-hidden="true"></span>
+            NUEVO
+          </div>
+
+          <h2 id="hub-title">
+            Cracko Studio Hub
+          </h2>
+
+          <p>
+            Nuestro software gratuito para configurar tus overlays
+            sin depender de nosotros. Ajusta el marco de neón en
+            tiempo real, coloca tu logo, previsualiza la webcam y
+            exporta el resultado con transparencia, listo para tu
+            programa de streaming.
+          </p>
+
+          <ul class="hub-features">
+            <li>
+              Marcos de neón configurables en tiempo real
+            </li>
+            <li>
+              Previsualización de webcam integrada
+            </li>
+            <li>
+              Exportación con transparencia en segundos
+            </li>
+            <li>
+              Funciona junto a OBS o Streamlabs
+            </li>
+          </ul>
+
+          <a
+            href="Cracko Studio Hub-win32-x64 (2).zip"
+            class="btn btn-primary"
+            download
+          >
+            Descargar gratis para Windows
+          </a>
+
+        </div>
+
+        <div
+          class="hub-visual"
+          aria-hidden="true"
+        >
+
+          <div class="hub-window">
+
+            <div class="hub-window-top">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="hub-window-body">
+
+              <div class="hub-slider">
+                <span>Intensidad del neón</span>
+
+                <div class="hub-track">
+                  <i></i>
+                </div>
+              </div>
+
+              <div class="hub-slider">
+                <span>Grosor del marco</span>
+
+                <div class="hub-track">
+                  <i style="width: 70%"></i>
+                </div>
+              </div>
+
+              <div class="hub-preview-cam"></div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section
+      class="chat-section"
+      id="chat"
+      aria-labelledby="chat-title"
+    >
+
+      <div class="section-head">
+
+        <h2 id="chat-title">
+          Lo que dicen en el chat
+        </h2>
+
+        <p>
+          Mensajes reales del canal de soporte, con los nombres cambiados.
+        </p>
+
+      </div>
+
+      <div
+        id="shapo-widget-8a0e2842a21bee113210"
+        aria-label="Opiniones de clientes"
+      ></div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+
+        <a
+          href="#top"
+          class="footer-logo"
+          aria-label="Cracko Studio — Inicio"
+        >
+          <img
+            src="crackostudologo2.png"
+            alt="Cracko Studio"
+            class="footer-logo-image"
+          >
+        </a>
+
+        <p>
+          Overlays, transiciones y vídeo para creadores
+          de contenido en directo.
+        </p>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Enlaces</h4>
+
+        <a href="#top">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="contacto.html">Contacto</a>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Legal</h4>
+
+        <a href="privacidad.html">
+          Política de privacidad
+        </a>
+
+        <a href="faq.html">
+          Preguntas frecuentes
+        </a>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Síguenos</h4>
+
+        <a
+          href="#"
+          aria-label="Cracko Studio en Twitch"
+          rel="noopener noreferrer"
+        >
+          Twitch
+        </a>
+
+        <a
+          href="#"
+          aria-label="Cracko Studio en Instagram"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+
+        <a
+          href="#"
+          aria-label="Cracko Studio en TikTok"
+          rel="noopener noreferrer"
+        >
+          TikTok
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> Cracko Studio.
+      Todos los derechos reservados.
+    </div>
+
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script
+    src="https://cdn.shapo.io/js/embed.js"
+    defer
+  ></script>
+
+  <script src="script.js" defer></script>
+
 </body>
-
 </html>
