@@ -1,62 +1,320 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contacto — Cracko Studio</title>
+
+  <meta
+    name="description"
+    content="Contacta con Cracko Studio para crear overlays, transiciones y edición de vídeo para tu canal."
+  >
+
+  <meta name="theme-color" content="#0a0d12">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header class="headertienda">
-        <div class="left">
-            <img style="margin: 30px;" src="logopng.png" alt="">
-        </div>
-        <div class="right">
-            <a href="index.html">
-                <button>INICIO</button>
-            </a>
-            <button>ACERCA DE</button>
-            <a href="tienda.html">
-                <button class="botontienda"> <img id="cart" src="shopping-cart.png" style="width:0px;"
-                        alt="">TIENDA</button>
-            </a>
-            <button class="contacto"><img id="telefono" width="0px"
-                    src="phone-call-auricular-symbol-in-black_icon-icons.com_56483.png" alt="">CONTACTO</button>
-        </div>
-    </header>
-    <main style="
-    /* align-items: center; */
-    /* align-content: center; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 560px;
-">
 
-<h2 style="color: white; font-family: sans-serif; font-size: 70px; width: 100%; text-align: center;">¿HABLAMOS?</h2>
-        <form action="https://formspree.io/f/mvgndvjk" method="POST">
-            <label>
-                Tu correo:
-                <input type="email" name="email">
-            </label>
-            <label>
-                Tu mensaje:
-                <textarea name="message"></textarea>
-            </label>
-            <button type="submit">Enviar</button>
-        </form>
-    </main>
-    <footer>
-        <div class="columns" style="padding: 30px; width: 100%; text-align: center;">
-            <col style="margin-left: 30px;">
-            <h3 style="font-family: sans-serif;">Cracko Studio</h3>
-            <p style="font-family: sans-serif;">Cracko Studio es una agencia de edición de contenidos para creadores de
-                contenido.</p>
-            </col>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <div class="header-inner">
+
+      <a
+        href="index.html"
+        class="logo"
+        aria-label="Cracko Studio — Inicio"
+      >
+        <img
+          src="logopng.png"
+          alt="Cracko Studio"
+          class="logo-image"
+        >
+      </a>
+
+      <nav
+        class="main-nav"
+        id="main-nav"
+        aria-label="Navegación principal"
+      >
+        <a href="index.html">Inicio</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#hub">Hub</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="contacto.html" class="active">
+          Contacto
+        </a>
+      </nav>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- CONTACT HERO -->
+    <section class="contact-hero">
+
+      <div class="contact-grid">
+
+        <div class="contact-copy">
+
+          <p class="eyebrow">
+            CRACKO STUDIO / CONTACTO
+          </p>
+
+          <h1>
+            ¿Hablamos?
+          </h1>
+
+          <p class="contact-intro">
+            Cuéntanos qué tienes en mente y hablamos de cómo podemos
+            llevar tu canal al siguiente nivel.
+          </p>
+
+          <div class="contact-info">
+
+            <div class="info-item">
+              <span class="info-number">01</span>
+
+              <div>
+                <h2>Cuéntanos tu idea</h2>
+                <p>
+                  Overlays, transiciones, edición, branding o cualquier
+                  cosa que necesites para tu contenido.
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-number">02</span>
+
+              <div>
+                <h2>Te respondemos</h2>
+                <p>
+                  Revisamos tu propuesta y nos ponemos en contacto
+                  contigo para concretar todos los detalles.
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-number">03</span>
+
+              <div>
+                <h2>Empezamos</h2>
+                <p>
+                  Definimos el proyecto, los archivos necesarios
+                  y el resultado que quieres conseguir.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
-    </footer>
+
+
+        <!-- FORM -->
+        <div class="contact-card">
+
+          <div class="card-header">
+
+            <span class="status">
+              <span class="status-dot"></span>
+              DISPONIBLE
+            </span>
+
+            <span class="card-code">
+              CONTACT_FORM / 01
+            </span>
+
+          </div>
+
+          <form
+            action="https://formspree.io/f/mvgndvjk"
+            method="POST"
+            class="contact-form"
+          >
+
+            <div class="form-group">
+
+              <label for="email">
+                Tu correo
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="tu@email.com"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="message">
+                Tu mensaje
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                rows="7"
+                placeholder="Cuéntanos qué necesitas..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="form-footer">
+
+              <p>
+                Te responderemos lo antes posible.
+              </p>
+
+              <button
+                type="submit"
+                class="submit-button"
+              >
+                Enviar mensaje
+                <span aria-hidden="true">→</span>
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+
+        <a
+          href="index.html"
+          class="footer-logo"
+          aria-label="Cracko Studio — Inicio"
+        >
+          <img
+            src="logopng.png"
+            alt="Cracko Studio"
+          >
+        </a>
+
+        <p>
+          Overlays, transiciones y vídeo para creadores
+          de contenido en directo.
+        </p>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h2>Enlaces</h2>
+
+        <a href="index.html">Inicio</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="contacto.html">Contacto</a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h2>Legal</h2>
+
+        <a href="privacidad.html">
+          Política de privacidad
+        </a>
+
+        <a href="faq.html">
+          Preguntas frecuentes
+        </a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h2>Síguenos</h2>
+
+        <a href="#" rel="noopener noreferrer">
+          Twitch
+        </a>
+
+        <a href="#" rel="noopener noreferrer">
+          Instagram
+        </a>
+
+        <a href="#" rel="noopener noreferrer">
+          TikTok
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      © <span id="year"></span>
+      Cracko Studio.
+      Todos los derechos reservados.
+
+    </div>
+
+  </footer>
+
+
+  <script src="contacto.js" defer></script>
+
 </body>
-
 </html>
+```
